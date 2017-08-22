@@ -1,0 +1,79 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	background-color: #324057;
+}
+
+a {
+	text-decoration:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	color: #1F2D3D;
+	height: 100%;
+}
+
+/******************** login ********************/
+.login {
+	height: 100%;
+	width: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+[is-moblie="1"] .login {
+	background: url(../img/bg/bg01.jpg) no-repeat #324057;
+	background-size: cover;
+}
+
+.login-form {
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-clip: padding-box;
+	background-color: #EFF2F7;
+	margin: 5% auto;
+	width: 25%;
+  box-shadow: 0 0 20px #000;
+	padding: 35px 35px 15px 35px;
+}
+[is-moblie="1"] .login-form {
+	margin-top: 12%;
+	width: 70%;
+	background-color: rgba(255, 255, 255, 0.33);
+}
+
+.login-button {
+	width: 100%;
+  font-size: 18px;
+}
+
+.login_title {
+	float: left;
+}
+
+.login_tosignin {
+	float: right;
+	color: #d26262;
+	display: block;
+	-webkit-margin-before: 1.33em;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.login_tosignup {
+	font-size: 14px;
+	color: #1F2D3D;
+	cursor: pointer;
+}
+[is-moblie="1"] .login_tosignup {
+	font-weight: bold;
+}
