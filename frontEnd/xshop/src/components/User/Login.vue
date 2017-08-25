@@ -88,6 +88,21 @@ export default {
       checkID: (rule, value, callback) => {
         if (!value) callback()
         let test = true
+        this.$http.post(this.BACK_DOMAIN+'checkUId',{user_id: value}).then(function(res){
+          console.log(res)
+          // if (res.status === 200) {
+          //   if (res.data.ret === 1) {
+          //     test = true
+          //   } else {
+          //     test
+          //   }
+          //   test = res.data && res.data.ret === 1 
+          // } else {
+          //   test = true
+          // }
+        }).catch(function(err){
+          console.log('Error', err);
+        })
         test ? callback() : callback(new Errror('用户名已存在'));
         return test;
       },
@@ -126,20 +141,20 @@ export default {
       this.rules.verify = [{ message: '验证码错误', trigger: 'blur', validator: this.checkVerify }];
     },
     init: function (islogin) {
-      this.is_login = (typeof islogin === 'undefined') ? (this.$route.query.sign && this.$route.query.sign === 'up' ? false : true) : islogin;
+      this.is_login = islogin === undefined ? (this.$route.query.sign && this.$route.query.sign === 'up' ? false : true) : islogin;
       this.title = this.is_login ? 'Sign in' : 'Sign up';
       this.has_verify = this.refreshVerify();
       this.addRules();
+    },
+    created: function () {
+      this.init();
+    },
+    beforeDestory: function () {
+      console.log('beforeDestory');
+      this.resetData();
+    },
+    watch: {
     }
-  },
-  created: function () {
-    this.init();
-  },
-  beforeDestory: function () {
-    console.log('beforeDestory');
-    this.resetData();
-  },
-  watch: {
   }
 }
 </script>
