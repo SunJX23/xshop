@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+import axios from 'axios'
 import * as DEV_CONST from '../config/dev.const.js'
 import './assets/css/global.css'
 import 'element-ui/lib/theme-default/index.css'
@@ -12,11 +13,14 @@ import './assets/cases/flexible.debug.js'
 // import './assets/cases/flexible.min.js'
 
 Vue.use(ElementUI)
+axios.defaults.baseURL = window.BACK_DOMAIN
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 Vue.config.productionTip = false
 
-window.FRONT_DOMAIN = DEV_CONST.FRONT_DOMAIN
-window.BACK_DOMAIN = DEV_CONST.BACK_DOMAIN
+Vue.prototype.$http = axios
+Vue.prototype.FRONT_DOMAIN = DEV_CONST.FRONT_DOMAIN
+Vue.prototype.BACK_DOMAIN = DEV_CONST.BACK_DOMAIN
 
 /* eslint-disable no-new */
 new Vue({
