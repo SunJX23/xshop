@@ -15,6 +15,7 @@ class Admin extends Common
     // 初始化
     public function _initialize()
     {
+        parent::_initialize();
         Admin::$user = new User();
     }
 
