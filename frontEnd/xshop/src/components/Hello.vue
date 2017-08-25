@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     login: function () {
-      return window.FRONT_DOMAIN + 'login';
+      return this.FRONT_DOMAIN + 'login';
     }
   }
 }
