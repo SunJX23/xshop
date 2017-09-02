@@ -34,4 +34,9 @@ class Admin extends Common
         return json_encode(Admin::$user->checkIdExisted());
     }
 
+    public function test()
+    {
+
+    }
+    
 }

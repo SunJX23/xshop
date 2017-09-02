@@ -43,6 +43,16 @@ export const validName4 = (rule, value, callback) => {
 }
 
 
+export const clone = function (obj) {
+	if (typeof obj !== 'object') return obj;
+	let new_obj = Array.isArray(obj) ? [] : {}
+	for (let i in obj) {
+		new_obj[i] = XXX.clone(obj[i]);
+	}
+	return new_obj
+}
+
+
 // promise图片下载示例
 function imgLoad(url) {
   // Create new promise with the Promise() constructor;

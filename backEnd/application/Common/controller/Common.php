@@ -14,9 +14,12 @@ class Common extends Controller
         /*防止跨域*/
         $http_origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : "*";
         header('Access-Control-Allow-Origin: '.$http_origin);
-        header('Access-Control-Allow-Credentials: true');
+        if ($http_origin !== "*") {
+            header('Access-Control-Allow-Credentials: true');
+        }
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, authKey, sessionId");
+        header('Content-Type: application/json; charset=utf-8');
         $request =  Request::instance();
     }
 

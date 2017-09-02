@@ -48,8 +48,8 @@ const LoginForm = {
 const Rules = {
   id: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 10, message: '长度在 3 到 10 个字', trigger: 'change' },
-    { message: '用户名只能由英文/数字/下划线组成', trigger: 'change', validator: utils.validName1 },
+    // { min: 3, max: 10, message: '长度在 3 到 10 个字', trigger: 'change' },
+    { message: '用户名由3到10个英文/数字/下划线组成', trigger: 'change', validator: utils.validName1 },
     { message: '用户名不可用数字开头', trigger: 'change', validator: utils.validName2 }
   ],
   pasw: [
@@ -86,29 +86,21 @@ export default {
         return test;
       },
       checkID: (rule, value, callback) => {
-        if (!value) callback()
+        if (!value) callback();
         let test = true
-        this.$http.post(this.BACK_DOMAIN+'checkUId',{user_id: value}).then(function(res){
-          console.log(res)
-          // if (res.status === 200) {
-          //   if (res.data.ret === 1) {
-          //     test = true
-          //   } else {
-          //     test
-          //   }
-          //   test = res.data && res.data.ret === 1 
-          // } else {
-          //   test = true
-          // }
+        this.$http.post(this.BACK_DOMAIN+'checkUId',{user_id: value}).then((res) => {
+          console.log(res.data);
+          this.is_remember = (res.data && res.data.ret === 1) || res.status !== 200;
         }).catch(function(err){
           console.log('Error', err);
         })
+        console.log(this.is_remember)
         test ? callback() : callback(new Errror('用户名已存在'));
-        return test;
+        return test
       },
       checkVerify: (rule, value, callback) => {
-        if (!value) callback()
-        let test = true
+        if (!value) callback();
+        let test = true;
         test ? callback() : callback(new Errror('验证码错误'));
         return test;
       }
@@ -145,16 +137,16 @@ export default {
       this.title = this.is_login ? 'Sign in' : 'Sign up';
       this.has_verify = this.refreshVerify();
       this.addRules();
-    },
-    created: function () {
-      this.init();
-    },
-    beforeDestory: function () {
-      console.log('beforeDestory');
-      this.resetData();
-    },
-    watch: {
     }
+  },
+  created: function () {
+    this.init();
+  },
+  beforeDestory: function () {
+    console.log('beforeDestory');
+    this.resetData();
+  },
+  watch: {
   }
 }
 </script>

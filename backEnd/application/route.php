@@ -22,6 +22,7 @@ return [
     'signin' => 'user/admin/signin',
     'signup' => 'user/admin/signup',
     'checkUId' => 'user/admin/checkUID',
+    'test' => 'user/admin/test',
 
     // '[user]' => [
     //     ':signin' => 'User/User/signin',
